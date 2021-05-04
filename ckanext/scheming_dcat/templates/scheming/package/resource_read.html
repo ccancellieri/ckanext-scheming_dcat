@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{%- block resource_license -%}
+    {% if pkg.license_title is not none %}
+        <tr>
+            <th scope="row">{{ _('License') }}</th>
+            <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+        </tr>
+    {% endif %}
+{%- endblock -%}

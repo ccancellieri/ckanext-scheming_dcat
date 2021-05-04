@@ -1,0 +1,5 @@
+#ckanext-scheming
+git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming
+
+#ckanext-dcat
+git+https://github.com/ckan/ckanext-dcat.git#egg=ckanext-dcat

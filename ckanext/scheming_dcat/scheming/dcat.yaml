@@ -1,0 +1,391 @@
+scheming_version: 2
+dataset_type: dcat
+about: DCAT base type
+about_url: https://bitbucket.org/cioapps/ckanext-scheming-dcat/
+
+dataset_fields:
+################################
+## DO NOT USE THIS FIELDS #######
+#- field_name: identifier
+#  label: identifier
+#  form_placeholder: identifier
+
+# After a test, it is provided by DCAT
+#- field_name: issued
+#  label: issued
+#  form_placeholder: issued
+
+# After a test, it is provided by DCAT
+#- field_name: modified
+#  label: modified
+#  form_placeholder: modified
+
+#############################
+############################
+
+- field_name: title
+  label: Title
+  preset: title
+  help_text: A descriptive title
+  required: True
+
+# In the DCAT table it's extra:uri but it could be a mistake
+# Name is required by CKAN's database table
+- field_name: name
+  label: Url
+  preset: dataset_slug
+  required: True
+
+- field_name: notes
+  label: Description
+  form_snippet: markdown.html
+  help_text: Some useful notes about the data
+  required: True
+
+# The DCAT table https://github.com/ckan/ckanext-dcat, specifies the use of "tags"
+# Actually the field_name should be called "tag_string"
+
+- field_name: tag_string
+  label: Tags
+  preset: tag_agrovoc_autocomplete
+  help_text: Type to search. It can be tag term or free form.
+
+- field_name: owner_org
+  label: Organization
+  preset: dataset_organization
+
+- field_name: publisher_email
+  label: Publisher email
+  validators: email_validator ignore_missing
+  help_text: A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox (foaf:mbox).
+  display_snippet: email.html
+
+- field_name: publisher_name
+  label: Publisher name
+  help_text: The name (foaf:name) does not explicitly represent name substructure (family vs given etc.) it does provide a basic level of interoperability. See the issue tracker for status of work on this issue.
+
+- field_name: publisher_url
+  label: Publisher url
+  validators: url_validator ignore_missing
+  help_text: (foaf:homepage) A 'homepage' in this sense is a public Web document, typically but not necessarily available in HTML format. The page has as a topic the thing whose homepage it is. The homepage is usually controlled, edited or published by the thing whose homepage it is (Publisher); as such one might look to a homepage for information on its owner from its owner. This works for people, companies, organisations etc.
+  display_snippet: link.html
+
+# Todo
+# https://www.w3.org/TR/vocab-dcat-2/#classifying-dataset-types
+# It is recommended that the value of the property is taken from a well governed and broadly recognised set of resource types
+#- field_name: publisher_type
+#  label: Publisher type
+#  validators: url_validator
+#  placeholder: '[optional]'
+#  help_text: The type or genre of a publisher, (class foaf:Agent, dct:type). It is recommended that the value of the property is taken from a well governed and broadly recognised set of resource types.
+
+#- field_name: publisher_uri
+#  label: Publisher uri
+#  validators: url_validator
+#  placeholder: '[optional]'
+#  help_text: URI pointing to a class for this Agent (foaf:Agent); Agent that do stuff. A well known sub-class is Person
+
+- field_name: contact_email
+  label: Contact email
+  validators: email_validator ignore_missing
+  help_text: The maintainer or the author's email
+  display_snippet: email.html
+
+
+- field_name: contact_name
+  label: Contact name
+  help_text: The maintainer or the author of this metadata
+
+
+# Todo
+# https://github.com/w3c/dxwg/issues/95
+#- field_name: contact_uri
+#  label: Contact uri
+#  placeholder: '[optional]'
+#  validators: url_validator
+#  help_text: This is an URI referring to another dcat contact (the domain of dcat:contactPoint)
+
+
+# TODO
+# We need to create a taglist for the theme field
+
+# The object of the property dcat:theme should be the URI of one of the terms in the vocabulary
+- field_name: theme
+  label: Theme
+  preset: tag_agrovoc_autocomplete
+  help_inline: false
+  help_text: The object of the property dcat:theme should be the URI of one of the terms in the vocabulary
+
+# Note
+# Language expects a JSON list object
+# Recommended best practice is to use an encoding scheme, 
+# such as the three-letter code (ISO639-2) or the two-letter code (ISO639-1)
+- field_name: language
+  label: Language
+  preset: multiple_checkbox
+  choices:
+  - value: ARA
+    label: Arabic
+  - value: ZHO
+    label: Chinese
+  - value: ENG
+    label: English
+  - value: FRA
+    label: French
+  - value: RUS
+    label: Russian
+  - value: SPA
+    label: Spanish
+
+#- field_name: access_rights
+#  label: Access rights
+#  help_text: A vocabulary or URI Linking DCAT Metadata and/or resources to suitable license and rights expressions.
+
+- field_name: provenance
+  label: Provenance
+  validators: ignore_missing url_validator
+  help_text: A link from a metadata description to the project that generated the metadata
+  display_snippet: link.html
+
+- field_name: version
+  label: Version
+  help_text: A string giving information about this version. This statement does not contribute to the logical meaning of the ontology. (owl:versionInfo)
+
+# TODO
+# TO add validation and completion
+#- field_name: is_version_of
+#  label: Version of
+#  preset: multiple_text
+#  validators: ignore_missing
+#  help_text: Children to parent relationships. There may be a need to make the resource available in a different representation or language. Moreover, a new version may or may not replace the original resource
+
+- field_name: version_notes
+  label: Version notes
+  form_snippet: markdown.html
+  help_text: A description of changes between this version and the previous version of the Asset (adms:versionNotes).
+
+# TODO
+# TO add validation and completion
+#- field_name: has_version
+#  label: Has version
+#  preset: multiple_text
+#  validators: ignore_missing url_validator
+#  help_text: Parent to children relationship. It is assumed that these are one or more URIs referring to another metadata (dcat:Dataset)
+
+- field_name: frequency
+  label: Frequency
+  help_text: The frequency is an interval
+# TODO
+# Geospatial validation
+- field_name: spatial_text
+  label: Spatial text
+  help_text: Textual or geometric representation of the location
+
+- field_name: temporal_start
+  label: Temporal Start
+  preset: date
+  help_text: The temporal period that the metadata covers start (dct:temporal).
+
+- field_name: temporal_end
+  label: Temporal End
+  preset: date
+  help_text: The temporal period that the metadata covers end (dct:temporal).
+
+- field_name: url
+  label: Url
+  validators: ignore_missing url_validator
+  form_placeholder: '[optional] This field override the default uri'
+  help_text: A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information (dcat:landingPage)
+  display_snippet: link.html
+# As of DCAT-AP v1.1 there's no controlled vocabulary for this field
+# Todo
+# Use a URI from here https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/dcmitype/Dataset
+#- field_name: dcat_type
+#  label: DCAT Type
+#  form_placeholder: Type
+#  validators: ignore_missing url_validator
+#  default: 'dcat-ap_fao'
+#  placeholder: '[optional]'
+#  help_text: Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element (dct:type).
+
+# https://www.w3.org/ns/adms#Identifier
+#- field_name: alternate_identifier
+#  label: Alternate identifier
+#  validators: url_validator
+#  form_placeholder: '[optional]'
+#  help_text: The identifier might be used as part of the URI of the item, but still having it represented explicitly is useful (adms:identifier)
+
+# Must be a url pointing to another metadata
+#- field_name: conforms_to
+#  label: Conforms to
+#  placeholder: '[optional]'
+#  preset: multiple_text
+#  help_text: This property SHOULD be used to indicate the model, schema, ontology, view or profile that the cataloged resource content conforms to
+
+#- field_name: documentation
+#  label: Documentation
+#  preset: multiple_text
+#  validators: ignore_missing
+#  placeholder: '[optional]'
+#  help_text: Used to link to another resource where the nature of the relationship is known but does not match one of the standard
+
+
+# TODO
+# TO add validation and completion
+#- field_name: sample
+#  label: Sample
+#  preset: multiple_text
+#  placeholder: '[optional]'
+#  help_text: It is assumed that these are one or more URIs referring to a dcat resource (dcat:Distribution) instances
+#  help_inline: true
+
+# TODO
+# TO add validation and completion
+#- field_name: source
+#  label: Source
+#  preset: multiple_text
+#  validators: ignore_missing
+#  placeholder: '[optional]'
+#  help_text: This is an URI referring to another dcat metadata (dcat:Dataset)
+
+# TODO
+# High priority datastore backend with ISO 3 country code at least
+#- field_name: spatial_uri
+#  label: Spatial uri
+#  placeholder: '[optional]'
+#  help_text: URI reference (link) to a resource describing a location. It is recommended that links are to entries in a well maintained gazetteer such as Geonames.
+
+#######################################
+#######################################
+# RESOURCE FIELDS
+resource_fields:
+################################
+## DO NOT USE THIS FIELDS #######
+# Don't add, DCAT plugin automatically adds it
+#- field_name: distribution
+#  label: Distribution
+#  form_placeholder: Distribution
+################################
+################################
+
+- field_name: url
+  label: URL
+  preset: resource_url_upload
+  display_snippet: link.html
+  required: true
+  validators: not_empty
+
+- field_name: name
+  label: Name
+  form_placeholder: Descriptive name of the resource.
+  required: true
+  validators: not_empty
+
+- field_name: description
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: Summary explanation of file contents, purpose, origination, methods and usage guidance.
+
+- field_name: format
+  label: Format
+  preset: resource_format_autocomplete
+
+# http://localhost:5000/api/3/action/license_list
+- field_name: license
+  label: License
+  preset: select
+  help_text: License definitions and additional information can be found at http://opendefinition.org/
+  choices:
+  - value: http://www.opendefinition.org/licenses/odc-pddl
+    label: Open Data Commons Public Domain Dedication and License (PDDL)
+  - value: http://www.opendefinition.org/licenses/odc-odbl
+    label: Open Data Commons Open Database License (ODbL)
+  - value: ODC-BY-1.0
+    label: Open Data Commons Attribution License
+  - value: http://www.opendefinition.org/licenses/odc-by
+    label: Creative Commons CCZero
+  - value: https://creativecommons.org/licenses/by/3.0/igo
+    label: Creative Commons Attribution 3.0 IGO
+  - value: https://creativecommons.org/licenses/by-nc-sa/3.0/igo
+    label: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO
+  - value: https://creativecommons.org/licenses/by-sa/3.0/igo
+    label: Creative Commons Attribution-ShareAlike 3.0 IGO
+  - value: http://www.opendefinition.org/licenses/cc-zero
+    label: Creative Commons Attribution 4.0
+  - value: http://www.opendefinition.org/licenses/cc-by
+    label: Creative Commons Attribution
+  - value: http://www.opendefinition.org/licenses/cc-by-sa
+    label: Creative Commons Attribution Share-Alike
+  - value: http://www.opendefinition.org/licenses/gfdl
+    label: GNU Free Documentation License
+  - value: http://reference.data.gov.uk/id/open-government-licence
+    label: UK Open Government Licence (OGL)
+  - value: http://creativecommons.org/licenses/by-nc/2.0/
+    label: Creative Commons Non-Commercial (Any)
+
+- field_name: status
+  label: Status
+  help_text: The status of the Asset in the context of a particular workflow process (adms:status).
+
+#- field_name: rights
+#  label: Rights
+#  help_text: A vocabulary or URI Linking DCAT Metadata and/or resources to suitable license and rights expressions.
+
+# TODO
+# Validate url
+#- field_name: documentation
+#  label: Documentation
+#  preset: multiple_text
+#  validators: ignore_missing
+#  placeholder: '[optional]'
+#  help_text: Used to link to another resource where the nature of the relationship is known but does not match one of the standard
+
+# Recommended best practice is to use an encoding scheme, 
+# such as the three-letter code (ISO639-2) or the two-letter code (ISO639-1)
+- field_name: language
+  label: Language
+  preset: multiple_checkbox
+  choices:
+  - value: ARA
+    label: Arabic
+  - value: ZHO
+    label: Chinese
+  - value: ENG
+    label: English
+  - value: FRA
+    label: French
+  - value: RUS
+    label: Russian
+  - value: SPA
+    label: Spanish
+
+# Must be a url pointing to another metadata
+#- field_name: conforms_to
+#  label: Conforms to
+#  preset: multiple_text
+## Todo validators: ignore_missing url_validator
+#  help_text: This property SHOULD be used to indicate the model, schema, ontology, view or profile that the cataloged resource content conforms to
+
+#Note DCAT plugin provide a fallback uri for access url
+
+#- field_name: access_url
+#  label: Access url
+#  form_placeholder: Access url
+#  required: false
+
+- field_name: download_url
+  label: Download url
+  validators: url_validator ignore_missing
+  help_text: The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's. If present, downloadURL will be used as resource url in the JSON-ld or RDF representation (dcat:downloadURL).
+  display_snippet: link.html
+
+- field_name: issued
+  label: Issued
+  preset: date
+  help_text: Date of formal issuance (e.g., publication) of the resource. This property SHOULD be set using the first known date of issuance. (dct:issued)
+
+- field_name: modified
+  label: Modified
+  preset: date
+  help_text: Most recent date on which the item was changed, updated or modified. (dct:modified)
+

@@ -1,0 +1,11 @@
+.dcat-btn {
+    color: #fff;
+    background-color: #2f6cac !important;
+}
+
+/* Fix Tag fields:
+ https://github.com/ckan/ckanext-scheming/issues/219 */
+.select2-container.select2-container-multi.form-control {
+  height: auto;
+  padding: unset;
+}

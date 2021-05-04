@@ -1,0 +1,26 @@
+{# The original htmo comes with the visibility field added to the html and we do not want none-authorized users to be able to publish #}
+{# Unpublish metadata hence we had to override this html page #}
+{# https://github.com/ckan/ckanext-scheming/blob/master/ckanext/scheming/templates/scheming/form_snippets/organization.html  #}
+
+{% macro organization_option_tag(organization, selected_org) %}
+  {% block organization_option scoped %}
+    <option value="{{ organization.id }}"{%
+      if selected_org %} selected="selected"{% endif
+      %}>{{ organization.display_name }}</option>
+  {% endblock %}
+{% endmacro %}
+
+  <div data-module="dataset-visibility">
+  {% snippet "scheming/form_snippets/_organization_select.html",
+    field=field,
+    data=data,
+    errors=errors,
+    organizations_available=h.organizations_available('create_dataset'),
+    org_required=not h.check_config_permission('create_unowned_dataset')
+      or h.scheming_field_required(field),
+    organization_option_tag=organization_option_tag %}
+
+  {% block package_metadata_fields_visibility %}
+  {% endblock %}
+
+  </div>

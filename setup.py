@@ -15,7 +15,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='0.9.0',
+    version='0.0.1',
 
     description='''A simple DCAT implementation leveraging over scheming and dcat plugin''',
     long_description=long_description,
@@ -80,7 +80,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        scheming_dcat=ckanext.scheming_dcat.plugin:SchemingDcatPlugin
+        scheming_dcat=ckanext.scheming_dcat.plugin:Scheming_DcatPlugin
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan

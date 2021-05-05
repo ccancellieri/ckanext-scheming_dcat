@@ -1,12 +1,12 @@
-from exceptions import Exception
-
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
-class SchemingDcatPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm):
+
+class Scheming_DcatPlugin(plugins.SingletonPlugin,toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
 
     # IConfigurer
+
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')

@@ -41,8 +41,9 @@ ckanext-scheming_dcat
 Requirements
 ------------
 
-ckan scheming plugin
-ckan dcat plugin
+For example, you might want to mention here which versions of CKAN this
+extension works with.
+
 
 ------------
 Installation
@@ -75,10 +76,7 @@ To install ckanext-scheming_dcat:
 Config Settings
 ---------------
 
-Document any optional config settings here. For example::
-
-   # The minimum number of hours to wait before re-checking a resource
-   ckan.plugins = dcat dcat_json_interface structured_data scheming_datasets scheming_organizations scheming_dcat
+   ckan.plugins = dcat dcat_json_interface structured_data scheming_datasets scheming_organizations **scheming_dcat**
 
    # OPTIONALLY CONFIGURE DCAT
    # DCAT
@@ -90,7 +88,6 @@ Document any optional config settings here. For example::
    scheming.dataset_schemas = ckanext.scheming_dcat:scheming/dcat.yaml
    scheming.organization_schemas = ckanext.scheming_dcat:scheming/dcat_org.json
    scheming.presets = ckanext.scheming_dcat:scheming/presets.json
-
 
 ------------------------
 Development Installation

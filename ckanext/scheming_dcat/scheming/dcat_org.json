@@ -1,7 +1,7 @@
 {
-  "scheming_version": 1,
-  "organization_type": "dcat",
-  "about_url": "https://bitbucket.org/cioapps/ckanext-scheming-dcat/",
+  "scheming_version": 2,
+  "organization_type": "dcat_org",
+  "about_url": "https://bitbucket.org/cioapps/ckanext-scheming_dcat/",
   "fields": [
     {
       "field_name": "title",

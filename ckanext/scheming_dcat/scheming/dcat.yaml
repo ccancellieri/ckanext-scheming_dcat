@@ -1,7 +1,7 @@
 scheming_version: 2
 dataset_type: dcat
 about: DCAT base type
-about_url: https://bitbucket.org/cioapps/ckanext-scheming-dcat/
+about_url: https://bitbucket.org/cioapps/ckanext-scheming_dcat/
 
 dataset_fields:
 ################################

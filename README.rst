@@ -4,7 +4,7 @@ ckanext-scheming_dcat
 |
 |
 
-**ckanext-scheming_dcat** makes it possible for you to publish dcat(https://github.com/ckan/ckanext-dcat) **packages** and **resources**.
+**ckanext-scheming_dcat** makes it possible for you to publish DCAT **packages** and **resources** based on this standard(https://github.com/ckan/ckanext-dcat) .
 
 |
 |

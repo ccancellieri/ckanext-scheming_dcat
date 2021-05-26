@@ -74,7 +74,7 @@ To install ckanext-scheming_dcat:
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
-5. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
+4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
      sudo service apache2 reload
 

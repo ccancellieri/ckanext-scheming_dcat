@@ -80,18 +80,11 @@ RUN ckan-pip3 install -U pip && \
 
 ENTRYPOINT ["/ckan-entrypoint.sh"]
 
-
-
 RUN ckan-pip3 install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckan/dev-requirements.txt && \
     ckan-pip3 install --upgrade --no-cache-dir pytest-ckan
 
-RUN ls -la $CKAN_VENV/src/ckanext-$PLUGIN/
-
-RUN ls -la $CKAN_VENV/src/
-
-
 RUN ckan-pip3 install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckanext-$PLUGIN/dev-requirements.txt && \
-    ckan-pip3 install --upgrade --no-cache-dir $CKAN_VENV/src/ckanext-$PLUGIN/requirements.txt
+    ckan-pip3 install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckanext-$PLUGIN/requirements.txt
 
 ENV RUN_TEST $CKAN_VENV/src/ckanext-$PLUGIN/run-test.sh
 # ENV RUN_TEST $CKAN_VENV/src/$PLUGIN/run-test.sh

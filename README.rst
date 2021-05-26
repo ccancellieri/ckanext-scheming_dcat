@@ -28,6 +28,7 @@ ckanext-scheming_dcat
 |
 
 **Image below**: Creating a **DCAT** resource.
+
 |
 
 .. image:: docs/img/dcat_resource_create.png

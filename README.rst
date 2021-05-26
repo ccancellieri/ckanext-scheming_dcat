@@ -11,6 +11,8 @@ ckanext-scheming_dcat
 
 **Image below**: A **DCAT add button** will be added to your theme.
 
+|
+
 .. image:: docs/img/add_dcat_dataset.png
     :alt: DCAT add button
 
@@ -18,12 +20,15 @@ ckanext-scheming_dcat
 
 **Image below**: Creating a **DCAT** package.
 
-.. image:: docs/img/create_dcat_png.png
+|
+
+.. image:: docs/img/create_dcat_package.png
     :alt: Creating a DCAT package
 
 |
 
 **Image below**: Creating a **DCAT** resource.
+|
 
 .. image:: docs/img/dcat_resource_create.png
     :alt: Creating a DCAT resource
@@ -31,6 +36,8 @@ ckanext-scheming_dcat
 |
 
 **Image below**: Viewing a **DCAT** package and resource.
+
+|
 
 .. image:: docs/img/dcat_view.png
     :alt: Viewing a DCAT package and resource

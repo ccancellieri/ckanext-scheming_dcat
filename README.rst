@@ -1,57 +1,62 @@
-.. You should enable this project on travis-ci.org and coveralls.io to make
-   these badges work. The necessary Travis and Coverage config files have been
-   generated for you.
-
-.. image:: https://travis-ci.org/ccancellieri/ckanext-scheming_dcat.svg?branch=master
-    :target: https://travis-ci.org/ccancellieri/ckanext-scheming_dcat
-
-.. image:: https://coveralls.io/repos/ccancellieri/ckanext-scheming_dcat/badge.svg
-  :target: https://coveralls.io/r/ccancellieri/ckanext-scheming_dcat
-
-.. image:: https://pypip.in/download/ckanext-scheming_dcat/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-scheming_dcat/
-    :alt: Downloads
-
-.. image:: https://pypip.in/version/ckanext-scheming_dcat/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-scheming_dcat/
-    :alt: Latest Version
-
-.. image:: https://pypip.in/py_versions/ckanext-scheming_dcat/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-scheming_dcat/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/status/ckanext-scheming_dcat/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-scheming_dcat/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/ckanext-scheming_dcat/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-scheming_dcat/
-    :alt: License
-
-=============
 ckanext-scheming_dcat
-=============
+=====================================
 
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
+|
+|
 
+**ckanext-scheming_dcat** makes it possible for you to publish DCAT **packages** and **resources** based on this standard(https://github.com/ckan/ckanext-dcat) .
 
-------------
+|
+|
+
+**Image below**: A **DCAT add button** will be added to your theme.
+
+|
+
+.. image:: docs/img/add_dcat_dataset.png
+    :alt: DCAT add button
+
+|
+
+**Image below**: Creating a **DCAT** package.
+
+|
+
+.. image:: docs/img/create_dcat_package.png
+    :alt: Creating a DCAT package
+
+|
+
+**Image below**: Creating a **DCAT** resource.
+
+|
+
+.. image:: docs/img/dcat_resource_create.png
+    :alt: Creating a DCAT resource
+
+|
+
+**Image below**: Viewing a **DCAT** package and resource.
+
+|
+
+.. image:: docs/img/dcat_view.png
+    :alt: Viewing a DCAT package and resource
+
+|
+
 Requirements
 ------------
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+Before installing ckanext-scheming_dcat, make sure that you have installed the following:
+
+* CKAN 2.8 and above
+* DCAT (https://github.com/ckan/ckanext-dcat)
+* ckanext-scheming (https://github.com/ckan/ckanext-scheming.git)
 
 
-------------
 Installation
 ------------
-
-.. Add any additional install steps to the list below.
-   For example installing any non-Python dependencies or adding any required
-   config settings.
 
 To install ckanext-scheming_dcat:
 
@@ -63,7 +68,9 @@ To install ckanext-scheming_dcat:
 
      pip install ckanext-scheming_dcat
 
-3. Add ``scheming_dcat`` to the ``ckan.plugins`` setting in your CKAN
+
+
+3. Add ``dcat dcat_json_interface structured_data scheming_datasets scheming_organizations scheming_dcat`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
@@ -72,101 +79,39 @@ To install ckanext-scheming_dcat:
      sudo service apache2 reload
 
 
----------------
-Config Settings
----------------
 
-   ckan.plugins = dcat dcat_json_interface structured_data scheming_datasets scheming_organizations **scheming_dcat**
+Configuration
+-------------
 
-   # OPTIONALLY CONFIGURE DCAT
-   # DCAT
-   ckanext.dcat.rdf.profiles = euro_dcat_ap
-   ckanext.dcat.enable_rdf_endpoints = True
+You must make sure that the following is set in your CKAN config::
 
-   # Scheming
-   #   module-path:file to schemas being used
-   scheming.dataset_schemas = ckanext.scheming_dcat:scheming/dcat.yaml
-   scheming.organization_schemas = ckanext.scheming_dcat:scheming/dcat_org.json
-   scheming.presets = ckanext.scheming_dcat:scheming/presets.json
+    ckan.plugins = dcat dcat_json_interface structured_data scheming_datasets scheming_organizations scheming_dcat
 
-------------------------
-Development Installation
-------------------------
+    # OPTIONALLY CONFIGURE DCAT # DCAT ckanext.dcat.rdf.profiles = euro_dcat_ap ckanext.dcat.enable_rdf_endpoints = True
 
-To install ckanext-scheming_dcat for development, activate your CKAN virtualenv and
-do::
+    # Scheming # module-path:file to schemas being used scheming.dataset_schemas = ckanext.scheming_dcat:scheming/dcat.yaml scheming.organization_schemas = ckanext.scheming_dcat:scheming/dcat_org.json scheming.presets = ckanext.scheming_dcat:scheming/presets.json
 
-    git clone https://github.com/ccancellieri/ckanext-scheming_dcat.git
+
+Development
+-----------
+
+To install ckanext-scheming_dcat for development, activate your CKAN virtualenv and do::
+
+    git clone https://bitbucket.org/cioapps/ckanext-scheming_dcat.git
     cd ckanext-scheming_dcat
     python setup.py develop
-    pip install -r dev-requirements.txt
+
+Tests
+-----
+
+To run the tests:
+
+1. Activate your CKAN virtual environment, for example::
+
+     . /usr/lib/ckan/default/bin/activate
 
 
------------------
-Running the Tests
------------------
+2. From the CKAN root directory (not the extension root) do::
 
-To run the tests, do::
+    pytest --ckan-ini=test.ini ckanext/scheming_dcat/tests
 
-    nosetests --nologcapture --with-pylons=test.ini
-
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (``pip install coverage``) then run::
-
-    nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.scheming_dcat --cover-inclusive --cover-erase --cover-tests
-
-
----------------------------------
-Registering ckanext-scheming_dcat on PyPI
----------------------------------
-
-ckanext-scheming_dcat should be availabe on PyPI as
-https://pypi.python.org/pypi/ckanext-scheming_dcat. If that link doesn't work, then
-you can register the project on PyPI for the first time by following these
-steps:
-
-1. Create a source distribution of the project::
-
-     python setup.py sdist
-
-2. Register the project::
-
-     python setup.py register
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the first release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
-
-
-----------------------------------------
-Releasing a New Version of ckanext-scheming_dcat
-----------------------------------------
-
-ckanext-scheming_dcat is availabe on PyPI as https://pypi.python.org/pypi/ckanext-scheming_dcat.
-To publish a new version to PyPI follow these steps:
-
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
-
-2. Create a source distribution of the new version::
-
-     python setup.py sdist
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.2 then do::
-
-       git tag 0.0.2
-       git push --tags

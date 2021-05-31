@@ -4,7 +4,9 @@ ckanext-scheming_dcat
 |
 |
 
-**ckanext-scheming_dcat** makes it possible for you to publish DCAT **packages** and **resources** based on this standard(https://github.com/ckan/ckanext-dcat) .
+**ckanext-scheming_dcat** provides the DCAT interface to create DCAT **metadata** and **resources**.
+
+The plugin utilizes the exposed features of DCAT by extending the official DCAT plugin from CKAN https://github.com/ckan/ckanext-dcat.
 
 |
 |

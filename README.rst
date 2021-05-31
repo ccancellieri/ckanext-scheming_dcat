@@ -89,9 +89,13 @@ You must make sure that the following is set in your CKAN config::
 
     ckan.plugins = dcat dcat_json_interface structured_data scheming_datasets scheming_organizations scheming_dcat
 
-    # OPTIONALLY CONFIGURE DCAT # DCAT ckanext.dcat.rdf.profiles = euro_dcat_ap ckanext.dcat.enable_rdf_endpoints = True
+    # OPTIONALLY CONFIGURE DCAT
+    ckanext.dcat.rdf.profiles = euro_dcat_ap ckanext.dcat.enable_rdf_endpoints = True
 
-    # Scheming # module-path:file to schemas being used scheming.dataset_schemas = ckanext.scheming_dcat:scheming/dcat.yaml scheming.organization_schemas = ckanext.scheming_dcat:scheming/dcat_org.json scheming.presets = ckanext.scheming_dcat:scheming/presets.json
+    # Scheming # module-path:file to schemas being used
+    scheming.dataset_schemas = ckanext.scheming_dcat:scheming/dcat.yaml
+    scheming.organization_schemas = ckanext.scheming_dcat:scheming/dcat_org.json
+    scheming.presets = ckanext.scheming_dcat:scheming/presets.json
 
 
 Development

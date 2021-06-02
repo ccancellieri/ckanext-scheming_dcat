@@ -120,4 +120,49 @@ To run the tests:
 2. From the CKAN root directory (not the extension root) do::
 
     pytest --ckan-ini=test.ini ckanext/scheming_dcat/tests
+    
+    
+.. list-table:: The table below shows required and type of values to pass to the fields
+   :header-rows: 1
+
+   * - Field Name
+     - Type
+     - Validation
+     - Description
+     - Required
+   * - publisher_url
+     - string
+     - url
+     - (foaf:homepage) A 'homepage' in this sense is a public Web document
+     - false
+   * - publisher_email
+     - string
+     - email
+     - Internet mailbox associated with exactly one owner
+     - false
+   * - provenance
+     - string
+     - url
+     - A link from a metadata description to the project that generated the metadata
+     - false
+   * - owner_org
+     - string
+     - string
+     - The id of the dataset’s owning organization
+     - true
+   * - notes
+     - string
+     - string
+     - A description of the dataset
+     - true
+   * - name
+     - string
+     - string
+     - The name of the new dataset, must be between 2 and 100 characters long and contain only lowercase alphanumeric characters, - and _, e.g. 'warandpeace'
+     - true
+   * - contact_email
+     - string
+     - email
+     - The maintainer or the author's email
+     - false
 

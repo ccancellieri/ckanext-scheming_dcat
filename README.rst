@@ -157,7 +157,7 @@ Creating a DCAT package
    * - owner_org
      - string
      - string
-     - The id of the dataset’s owning organization
+     - The id of the datasetï¿½s owning organization
      - true
    * - notes
      - string
@@ -201,12 +201,11 @@ Creating a DCAT Metadata with **python**
 
 .. code-block:: python
 
-    base_url = "http://localhost:5000"
+    base_url="http://localhost:5000"
     
-    def create_package(API_KEY, organization_name='Africa', package_name,
-                   language=['ENG',
-                             'SPA']):
-    dcat_metadata = {
+    def create_package(API_KEY, organization_name='Africa', package_name, language=['ENG', 'SPA']):
+    
+        dcat_metadata = {
         "frequency": "previous version released in 1981",
         "title": package_name,
         "name": str(package_name).lower(),
@@ -250,3 +249,4 @@ Creating a DCAT Metadata with **python**
         print ("package was was created " + str(r.content))
     return r
 
+    

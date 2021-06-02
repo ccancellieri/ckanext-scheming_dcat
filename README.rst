@@ -196,7 +196,7 @@ Creating a DCAT package
      - SPA
      
 
-Creating a DCAT Metadata with **python**
+Creating a **DCAT** Metadata with **python**
 
 
 .. code-block:: python

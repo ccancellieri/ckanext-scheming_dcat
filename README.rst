@@ -236,17 +236,17 @@ Creating a DCAT Metadata with **python**
         "version": "Afro Rev.4",
         "notes": "These are notes",
         "documentation": ["https://data.afrostats.org/ckan/motor-sports/"],
-    }
+        }
 
-    r = requests.post(base_url + "/api/action/package_create",
+        r = requests.post(base_url + "/api/action/package_create",
                       data=json.dumps(dcat_metadata),
                       headers={"Authorization": API_KEY,
                                'Content-Type': "application/json"})
 
-    if r.status_code != 200:
-        print ("Error while creating package: {0}".format(r.content))
-    else:
-        print ("package was was created " + str(r.content))
-    return r
+        if r.status_code != 200:
+             print ("Error while creating package: {0}".format(r.content))
+        else:
+             print ("package was was created " + str(r.content))
+        return r
 
     

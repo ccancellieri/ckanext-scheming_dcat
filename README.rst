@@ -109,6 +109,7 @@ To install ckanext-scheming_dcat for development, activate your CKAN virtualenv 
     git clone https://bitbucket.org/cioapps/ckanext-scheming_dcat.git
     cd ckanext-scheming_dcat
     python setup.py develop
+
 |
 
 Tests
@@ -199,54 +200,75 @@ Creating a DCAT package
 Creating a **DCAT** Metadata with **python**
 
 
-.. code-block:: python
+.. code::
 
-    base_url="http://localhost:5000"
-    
-    def create_package(API_KEY, organization_name='Africa', package_name, language=['ENG', 'SPA']):
-    
-        dcat_metadata = {
-        "frequency": "previous version released in 1981",
-        "title": package_name,
-        "name": str(package_name).lower(),
-        "description": "The dataset on a number of motor sports activities across the continent",
-        "owner_org": organization_name,
-        "private": True,
-        "theme": "mena",
-        "is_version_of": ["https://data.afrostats.org/dcat/1990-africa","https://data.afrostats.org/2000-africa"],
-        "version_notes": "Version one from 1974 to 2000",
-        "language": language,
-        "provenance": "https://www.metadatagenerator.com/provenance",
-        "type": "dcat",
-        "has_version": ["https://data.afrostats.org/dcat/africa"],
-        "source": ["https://data.afrostats.org/dcat/gov"],
-        "tags": [
-            {
+    base_url = http://localhost:5000
+    curl -H "Content-Type: application/json"
+          -X POST $base_url/api/3/action/package_create
+          -H "Authorization: $APIKEY" -d '{
+                "frequency": "previous version released in 1981",
+                "title": "The population",
+                "name": "the-population",
+                "notes": "This metadata was released and funded by the member countries"
+                "owner_org": "test",
+                "private": True,
+                "theme": "Africa",
+                "language": ["ENG","SPA"],
+                "provenance": "http://www.afrostats.com/provenance",
+                "type": "dcat",
+                "tags": [
+                {
                 "name": "population"
-            }
-        ],
-        "temporal_start": "2006-01-01",
-        "temporal_end": "2007-09-21",
-        "publisher_name": "Ahmed Mascud",
-        "publisher_email": "ahmed@gov.co.za",
-        "publisher_url": "http://www.publisher.com",
-        "contact_name": "Central Afro Stats",
-        "contact_email": "info@gov.afri",
-        "state": "active",
-        "version": "Afro Rev.4",
-        "notes": "These are notes",
-        "documentation": ["https://data.afrostats.org/ckan/motor-sports/"],
-        }
+                }
+                ],
+                "temporal_start": "2006-01-01",
+                "temporal_end": "2007-09-21",
+                "publisher_name": "Ahmed Zulu",
+                "publisher_email": "ahmed@gov.za",
+                "publisher_url": "http://www.publisher.com",
+                "contact_name": "Central Afro Stats",
+                "contact_email": "info@gov.za",
+                "state": "active",
+                "version": "africa Rev.4"
+                }'
 
-        r = requests.post(base_url + "/api/action/package_create",
-                      data=json.dumps(dcat_metadata),
-                      headers={"Authorization": API_KEY,
-                               'Content-Type': "application/json"})
 
-        if r.status_code != 200:
-             print ("Error while creating package: {0}".format(r.content))
-        else:
-             print ("package was was created " + str(r.content))
-        return r
+**Deleting** a DCAT package
 
-    
+.. code::
+
+    curl -H "Content-Type: application/json"
+          -X POST $base_url/api/3/action/package_delete
+          -H "Authorization: $APIKEY" -d '{
+            "id": "the-population"
+            }'
+
+**Creating** a DCAT resource
+
+.. code::
+
+    curl -H "Content-Type: application/json"
+          -X POST $base_url/api/3/action/resource_create
+          -H "Authorization: $APIKEY" -d '{
+            "package_id": "the-population",
+            "url": "data.gov.com/transport",
+            "name": "Bus numbers",
+            "description": "The number of buses per city in Africa",
+            "format": "HTML",
+            "license": "http://www.opendefinition.org/licenses/odc-pddl",
+            "status": "Operational",
+            "language":["ENG","RUS"],
+            "download_url": "http://www.data.com/download",
+            "issued": "2006-05-01"
+            }'
+
+**Creating**  a DCAT resource with a file upload
+
+.. code::
+
+    curl -X POST $base_url/api/3/action/resource_create
+          -H "Authorization: $APIKEY"
+          -F "name=National Parks" -F "package_id=the-population" -F "description=The number of national parks" -F "upload=@./national-parks.csv"
+
+
+

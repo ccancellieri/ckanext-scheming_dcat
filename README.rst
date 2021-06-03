@@ -201,14 +201,14 @@ Creating, updating, deleting a **DCAT** Metadata with **curl**
 
 .. code::
 
-    base_url = http://localhost:5000
+    base_url=http://localhost:5000
 
 
 **APIKEY**
 
 .. code::
 
-    APIKEY = xxxxx-xxxxx-xxxx-xxxxx
+    APIKEY=xxxxx-xxxxx-xxxx-xxxxx
 
 
 .. code::
@@ -262,8 +262,6 @@ Creating, updating, deleting a **DCAT** Metadata with **curl**
             "id": "the-population"
             }'
 
-
-**Creating**, **updating**, **deleting** a **DCAT** resource with **curl**
 
 **Creating** a DCAT resource
 

@@ -197,12 +197,22 @@ Creating a DCAT package
      - SPA
      
 
-Creating a **DCAT** Metadata with **curl**
-
+Creating, updating, deleting a **DCAT** Metadata with **curl**
 
 .. code::
 
     base_url = http://localhost:5000
+
+
+**APIKEY**
+
+.. code::
+
+    APIKEY = xxxxx-xxxxx-xxxx-xxxxx
+
+
+.. code::
+
     curl -H "Content-Type: application/json"
           -X POST $base_url/api/3/action/package_create
           -H "Authorization: $APIKEY" -d '{
@@ -210,7 +220,7 @@ Creating a **DCAT** Metadata with **curl**
                 "title": "The population",
                 "name": "the-population",
                 "notes": "This metadata was released and funded by the member countries"
-                "owner_org": "test",
+                "owner_org": "africa",
                 "private": True,
                 "theme": "Africa",
                 "language": ["ENG","SPA"],
@@ -233,6 +243,15 @@ Creating a **DCAT** Metadata with **curl**
                 }'
 
 
+**Updating**  a DCAT package
+
+.. code::
+
+    curl -X PATCH $base_url/api/3/action/package_update
+          -H "Authorization: $APIKEY"
+          -F "id=the-population" -F "description= The metadata also includes data from Asia and Europe"
+
+
 **Deleting** a DCAT package
 
 .. code::
@@ -243,11 +262,14 @@ Creating a **DCAT** Metadata with **curl**
             "id": "the-population"
             }'
 
+
+**Creating**, **updating**, **deleting** a **DCAT** resource with **curl**
+
 **Creating** a DCAT resource
 
 .. code::
 
-    curl -H "Content-Type: application/json"
+    curl  -H "Content-Type: application/json"
           -X POST $base_url/api/3/action/resource_create
           -H "Authorization: $APIKEY" -d '{
             "package_id": "the-population",
@@ -262,13 +284,32 @@ Creating a **DCAT** Metadata with **curl**
             "issued": "2006-05-01"
             }'
 
-**Creating**  a DCAT resource with a file upload
+**Creating** a DCAT resource with a file upload
 
 .. code::
 
-    curl -X POST $base_url/api/3/action/resource_create
+    curl  -X POST $base_url/api/3/action/resource_create
           -H "Authorization: $APIKEY"
-          -F "name=National Parks" -F "package_id=the-population" -F "description=The number of national parks" -F "upload=@./national-parks.csv"
+          -F "name=national-parks" -F "package_id=the-population" -F "description=The number of national parks" -F "upload=@./national-parks.csv"
 
+
+
+**Updating**  a DCAT resource
+
+.. code::
+
+    curl -X PATCH $base_url/api/3/action/resource_update
+          -H "Authorization: $APIKEY"
+          -F "id=xxxx-xxxx-xxxx" -F "description=The number of nationals in Sub Saharan Africa"
+
+
+**Deleting**  a DCAT resource
+
+.. code::
+
+    curl -X POST $base_url/api/3/action/resource_delete
+         -H "Authorization: $APIKEY" -d '{
+         "id": "xxxx-xxxx-xxxx"
+        }'
 
 

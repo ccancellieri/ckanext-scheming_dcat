@@ -85,7 +85,7 @@ services:
     container_name: solr
     build:
 #      context: ${BITBUCKET_CLONE_DIR}/contrib/docker
-      context: ${BITBUCKET_CLONE_DIR}
+      context: ${BITBUCKET_CLONE_DIR}/ckan
       dockerfile: contrib/docker/solr/Dockerfile
     # volumes:
       #https://community.atlassian.com/t5/Bitbucket-questions/Bitbucket-pipelines-How-can-I-share-a-volume-between-two/qaq-p/1212083

@@ -33,7 +33,7 @@ services:
       context: ${BITBUCKET_CLONE_DIR}
       # context: ${BITBUCKET_CLONE_DIR}/contrib/docker
       # dockerfile: ${BITBUCKET_CLONE_DIR}/ckan/Dockerfile
-      dockerfile: ${BITBUCKET_CLONE_DIR}/Dockerfile.test
+      dockerfile: ${BITBUCKET_CLONE_DIR}/Dockerfile-2.8.test
       args:
           - CKAN_SITE_URL=${CKAN_SITE_URL}
           - PLUGIN=${PLUGIN}

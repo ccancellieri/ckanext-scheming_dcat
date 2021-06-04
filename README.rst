@@ -112,6 +112,40 @@ To install ckanext-scheming_dcat for development, activate your CKAN virtualenv 
 
 |
 
+Tags
+----
+
+|
+
+The plugin comes with Agrovoc support but you can easily configure the plugin to support vocabulary of your choice.
+
+**Loading agrovoc tags**
+
+
+
+.. code::
+
+    cd ckanext-scheming_dcat/setup
+
+    nano vocabulary.py
+
+    # Configurations
+
+    base_url= "http://localhost:5000"
+
+    api_key = "XXXXX-XXXXX-XXXXX"
+
+    filename = "agrovoc_en.csv"
+
+    vocabulary_name="agrovoc_en"
+
+    # Run the python script to load the tags
+
+    create_and_load_vocabulary(url, api_key, file_name, vocabulary_name)
+
+
+
+
 Tests
 -----
 

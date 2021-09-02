@@ -118,14 +118,20 @@ class TestSchemingDcat(object):
             helpers.call_action('package_create', self.context, **self.package)
 
     def test_can_create_and_delete_a_dcat_resource_with_licences_defined_on_the_list(self):
-        # Create package
-        package = helpers.call_action('package_create', self.context, **self.package)
+        # Create dataset
+        dataset = factories.Dataset(owner_org=self.owner_org['id'])
+
         # Create resource
-        resource = helpers.call_action('resource_create', self.context, name='test',
-                                       url='http://www.test.org/test',
-                                       package_id=package['id'], language=['ENG', 'ZHO'],
-                                       license='http://www.opendefinition.org/licenses/odc-odbl')
-        assert (resource['name'], 'test')
+        resource = helpers.call_action(
+            'resource_create',
+            context=self.context,
+            package_id=dataset['id'],
+            name='created new resourced',
+            license='http://www.opendefinition.org/licenses/odc-odbl',
+            url='https://example.com/test1')
+
+        assert resource['name'] == 'created new resourced'
+
         # Delete package
         helpers.call_action('resource_delete', self.context, **resource)
         with pytest.raises(ObjectNotFound) as e:

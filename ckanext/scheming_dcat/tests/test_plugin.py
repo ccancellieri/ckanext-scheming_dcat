@@ -143,6 +143,7 @@ class TestSchemingDcat(object):
 
     def test_can_not_create_a_dcat_resource_with_licences_not_defined_on_the_list(self):
         # Create resource
+        self.package['name'] = 'test00'
         package = helpers.call_action('package_create', self.context, **self.package)
         # Create resource
         new_context = {
@@ -150,26 +151,27 @@ class TestSchemingDcat(object):
             'user': self.admin['name']
         }
         with pytest.raises(ValidationError) as e:
-            helpers.call_action('resource_create', new_context, name='test',
-                                url='http://www.test.org/test',
+            helpers.call_action('resource_create', new_context, name='test00',
+                                url='http://www.test.org/test00',
                                 package_id=package['id'], license='http://creativecommons.org/custom_licenses')
 
     def test_can_create_a_dcat_resouce_with_un_official_languages(self):
         # Create resource
-        package = helpers.call_action('package_create', self.context, **self.package)
+        package = factories.Dataset(owner_org=self.owner_org['id'])
         # Create resource
         new_context = {
             'ignore_auth': False,
             'user': self.admin['name']
         }
 
-        resource = helpers.call_action('resource_create', new_context, name='test',
-                            url='http://www.test.org/test',
+        resource = helpers.call_action('resource_create', new_context, name='orange',
+                            url='http://www.test.org/orange',
                             package_id=package['id'], language=['ENG', 'ARA'])
         assert (resource['name'], 'test')
 
     def test_can_not_create_a_dcat_resource_with_none_un_official_languages(self):
         # Create resource
+        self.package['name'] = 'test0'
         package = helpers.call_action('package_create', self.context, **self.package)
         # Create resource
         new_context = {
@@ -177,8 +179,8 @@ class TestSchemingDcat(object):
             'user': self.admin['name']
         }
         with pytest.raises(ValidationError) as e:
-            helpers.call_action('resource_create', new_context, name='test',
-                                url='http://www.test.org/test',
+            helpers.call_action('resource_create', new_context, name='test0',
+                                url='http://www.test.org/test0',
                                 package_id=package['id'], language=['ZULU','SHONA'])
 
 

@@ -1,9 +1,3 @@
-{% set dcat = 'dcat' %}
-{% set dataset_type = dataset_type if dataset_type else 'dataset' %}
-{% if group %}
-    {% link_for _('Add Dataset'), controller='package', action='new', group=group, class_='btn btn-primary', icon='plus-square' %}
-    {% link_for _('Add DCAT'), group=group, controller='package', action='new', named_route='dcat_new', class_='btn btn-primary dcat-btn', icon='plus-square' %}
-{% else %}
-    {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-primary', icon='plus-square' %}
-    {% link_for _('Add DCAT'), controller='package', action='new', named_route='dcat_new', class_='btn btn-primary dcat-btn', icon='plus-square' %}
-{% endif %}
+{% ckan_extends %}
+{{super()}}
+{% include 'snippets/add_dataset_additional.html' %}

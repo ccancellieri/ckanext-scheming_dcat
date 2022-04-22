@@ -1,7 +1,7 @@
 {% if h.check_access('package_create') %}
     {% if group %}
-        {% link_for _('Add DCAT'), group=group, controller='package', action='new', named_route='dcat_new', class_='btn btn-primary dcat-btn', icon='plus-square' %}
+        {% link_for _('Add DCAT'), group=group, controller='package', action='new', named_route='dcat_new', class_='btn btn-primary', icon='plus-square' %}
     {% else %}
-        {% link_for _('Add DCAT'), controller='package', action='new', named_route='dcat_new', class_='btn btn-primary dcat-btn', icon='plus-square' %}
+        {% link_for _('Add DCAT'), controller='package', action='new', named_route='dcat_new', class_='btn btn-primary', icon='plus-square' %}
     {% endif %}
 {% endif %}
